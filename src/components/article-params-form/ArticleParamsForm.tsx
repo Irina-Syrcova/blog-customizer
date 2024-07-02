@@ -13,7 +13,7 @@ import { Separator } from '../separator';
 export let userSettings = defaultArticleState;
 
 type UseOutsideClick = {
-	isOpen: boolean;
+	isMenuOpen: boolean;
 	rootRef: React.RefObject<HTMLDivElement>;
 };
 
@@ -23,16 +23,16 @@ type TFormProps = {
 
 export const ArticleParamsForm = (props: TFormProps)  => {
 	const { setNewSettings } = props;
-	const [isOpen, setOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const ref = useRef<HTMLDivElement | null>(null);
 
 	function OnClick() {
-		setOpen(isOpen === false? true : false)
+		setIsMenuOpen(isMenuOpen === false? true : false)
 	}
 
 	const classToggleForm = clsx({
 		[styles.container] : true,
-		[styles.container_open] : isOpen
+		[styles.container_open] : isMenuOpen
 	})
 
 	const [selectedFontFamily, setSelectedFontFamily] = useState(defaultArticleState.fontFamilyOption);
@@ -63,11 +63,11 @@ export const ArticleParamsForm = (props: TFormProps)  => {
 	}
 
 	function handleClose() {
-		setOpen(false)
+		setIsMenuOpen(false)
 	}
 
 	const useOutsideClick = ({
-		isOpen,
+		isMenuOpen,
 		rootRef,
 	}: UseOutsideClick) => {
 		useEffect(() => {
@@ -83,17 +83,17 @@ export const ArticleParamsForm = (props: TFormProps)  => {
 			return () => {
 				window.removeEventListener('mousedown', handleClick);
 			};
-		}, [isOpen]);
+		}, [isMenuOpen]);
 	};
 
 	useOutsideClick({
-		isOpen,
+		isMenuOpen,
 		rootRef: ref,
 	})
 
 	return (
 		<>
-			<ArrowButton OnClick={OnClick} isOpen={isOpen} />
+			<ArrowButton OnClick={OnClick} isOpen={isMenuOpen} />
 			<aside className={classToggleForm} ref={ref}>
 				<form className={styles.form} onSubmit={handleClickSubmit}>
 					<Text weight={800} size={31} uppercase >
