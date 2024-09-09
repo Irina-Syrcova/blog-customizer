@@ -34,9 +34,7 @@ const App = () => {
 
 root.render(
 	<StrictMode>
-		<BrowserRouter
-            basename={process.env.PUBLIC_PATH ? process.env.PUBLIC_PATH : '/'}>
-			<App />
-		</BrowserRouter>
+		<BrowserRouter>
+		<App />
 	</StrictMode>
 );
