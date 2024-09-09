@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode, CSSProperties } from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { Article } from './components/article/Article';
@@ -34,7 +33,6 @@ const App = () => {
 
 root.render(
 	<StrictMode>
-		<BrowserRouter>
 		<App />
 	</StrictMode>
 );
